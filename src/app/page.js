@@ -8,7 +8,7 @@ export default async function Page() {
 
   return (
     <div>
-      <h1>My Blog</h1>
+      <p className='text-3xl'>My Blog</p>
       <ul>
         {allPostsData.map(({ id, title, date }) => (
           <li key={id}>
@@ -16,7 +16,7 @@ export default async function Page() {
               {title}
             </Link>
             <br />
-            <small>{date}</small>
+            <small className='text-3xl'>{date}</small>
           </li>
         ))}
       </ul>

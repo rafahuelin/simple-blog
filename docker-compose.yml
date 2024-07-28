@@ -9,5 +9,7 @@ services:
     container_name: simple-blog
     ports:
       - "3000:3000"
-    environment:
-      - NODE_ENV=development
+    volumes:
+      - ./src:/app/src
+      - /usr/src/app/node_modules
+    command: pnpm dev

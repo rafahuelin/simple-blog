@@ -14,13 +14,13 @@ FROM base AS build
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 RUN pnpm run build
 
-FROM base as dev
+FROM build as dev
 COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/public /app/public
 EXPOSE 3000
 CMD ["pnpm", "dev"]
 
-FROM base as prod
+FROM prod-deps as prod
 COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/public /app/public
 EXPOSE 3000
